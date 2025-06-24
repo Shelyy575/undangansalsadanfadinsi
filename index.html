@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Undangan Pernikahan</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fefefe;
+    }
+
+    section {
+      width: 100%;
+    }
+
+    video, img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Tombol Musik */
+    .music-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      border-radius: 50%;
+      border: none;
+      background: #2C3E50;
+      color: #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .music-toggle:hover {
+      background: #1a252f;
+    }
+
+    /* Tombol RSVP & Lokasi */
+    .btn {
+      padding: 12px 24px;
+      background: #2C3E50;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #1a252f;
+    }
+
+    .lokasi-btn {
+      position: absolute;
+      top: 27%; /* geser ke bawah supaya di bawah elemen Save the Date */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .rsvp-section {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎵 Musik -->
+  <button id="musicToggle" class="music-toggle">🎵</button>
+  <audio id="bgm" autoplay loop>
+    <source src="assets/Kolly Melkak.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- 🎥 Video Awal -->
+  <section>
+    <video autoplay muted playsinline loop>
+      <source src="assets/awal.mp4" type="video/mp4" />
+    </video>
+  </section>
+
+  <!-- 🖼️ Gambar Tengah + Lokasi -->
+  <section style="position: relative;">
+    <img src="assets/undanganfadinsidansalsa.jpg" alt="Isi Undangan" />
+
+    <!-- 📍 Tombol Lokasi -->
+    <a href="https://maps.app.goo.gl/aUq7orTUBhuFeAkRA"
+       target="_blank"
+       class="btn lokasi-btn">📍 Lihat Lokasi</a>
+  </section>
+
+  <!-- 📝 RSVP -->
+  <section class="rsvp-section">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe9q7uEsduCJnYpx4z9AJJAtYG4VHd_jvGmj3haoLmhk5PWg/viewform"
+       target="_blank"
+       class="btn">📝 Isi RSVP</a>
+  </section>
+
+  <!-- 🎥 Video Akhir -->
+  <section>
+    <video autoplay muted playsinline loop>
+      <source src="assets/akhir.mp4" type="video/mp4" />
+    </video>
+  </section>
+
+  <!-- 🎵 Script Musik -->
+  <script>
+    const bgm = document.getElementById('bgm');
+    const toggleBtn = document.getElementById('musicToggle');
+
+    toggleBtn.addEventListener('click', () => {
+      if (bgm.paused) {
+        bgm.play();
+        toggleBtn.textContent = '🎵';
+      } else {
+        bgm.pause();
+        toggleBtn.textContent = '🔇';
+      }
+    });
+
+    // Autoplay fix for mobile
+    document.addEventListener('click', () => {
+      if (bgm.paused) {
+        bgm.play().catch(() => {});
+      }
+    });
+  </script>
+
+</body>
+</html>
